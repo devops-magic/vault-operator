@@ -1342,9 +1342,6 @@ func statefulSetForVault(v *vaultv1alpha1.Vault, externalSecretsToWatchItems []c
 	}
 
 	podManagementPolicy := appsv1.ParallelPodManagement
-	if v.Spec.IsRaftStorage() || v.Spec.IsRaftHAStorage() {
-		podManagementPolicy = appsv1.OrderedReadyPodManagement
-	}
 
 	return &appsv1.StatefulSet{
 		ObjectMeta: metav1.ObjectMeta{
